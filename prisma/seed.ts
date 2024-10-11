@@ -1,26 +1,21 @@
-const { PrismaClient } = require('@prisma/client');
+import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
 async function main() {
-  // Crear productos
-  await prisma.product.createMany({
-    data: [
-      { name: 'Laptop', description: 'Una laptop potente', price: 1200.50 },
-      { name: 'Teclado', description: 'Teclado mecánico', price: 100.99 },
-      { name: 'Mouse', description: 'Mouse inalámbrico', price: 40.00 },
-      { name: 'Monitor', description: 'Monitor 4K', price: 300.00 },
-      { name: 'Silla Gamer', description: 'Silla ergonómica para gamers', price: 200.00 },
-    ],
-    skipDuplicates: true,  
+  await prisma.user.create({
+    data: {
+      name: 'Alex',
+      email: 'alexslipk3@gmail.com',
+    },
   });
 
-  console.log('Productos creados correctamente');
+  console.log('Usuario creado correctamente');
 }
 
 main()
   .catch((e) => {
-    console.error('Error al crear productos:', e);
+    console.error('Error al crear usuario:', e);
     process.exit(1);
   })
   .finally(async () => {
